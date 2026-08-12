@@ -3,8 +3,10 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Mail, ArrowLeft } from "lucide-react";
-import { Button } from "@/components/common/Button";
+import {
+  Mail01Icon,
+  HuddleBrandLogo,
+} from "@/components/common/AuthIcons";
 
 export default function ForgotPasswordPage() {
   const router = useRouter();
@@ -16,66 +18,102 @@ export default function ForgotPasswordPage() {
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
-      router.push("/verify-otp?email=" + encodeURIComponent(email || "user@example.com"));
+      router.push("/verify-otp?email=" + encodeURIComponent(email || "example@email.com"));
     }, 600);
   };
 
   return (
-    <div className="min-h-screen bg-surface-50 dark:bg-surface-950 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md text-center space-y-3">
-        <Link href="/" className="inline-flex items-center gap-2">
-          <div className="h-12 w-12 rounded-2xl bg-brand-600 flex items-center justify-center font-black text-xl text-white shadow-lg">
-            HB
-          </div>
-        </Link>
-        <h2 className="text-2xl font-black text-surface-900 dark:text-surface-50 tracking-tight">
-          Forgot Password!
-        </h2>
-        <p className="text-xs text-surface-500 max-w-sm mx-auto">
-          It&apos;s easy to reset, just provide your email address. We&apos;ll send you an OTP code.
-        </p>
-      </div>
+    <main className="h-screen w-full bg-[#FFF9E6] flex items-center justify-center p-3 sm:p-4 lg:p-6 overflow-y-auto lg:overflow-hidden select-text">
+      <div className="w-full max-w-[1360px] max-h-full flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16 xl:gap-24 2xl:gap-[210px] my-auto py-2">
+        
+        {/* Left Branding Section (Figma Node 110:8990) */}
+        <section className="flex flex-col items-center justify-center text-center shrink-0 max-w-[420px] xl:max-w-[490px] w-full">
+          {/* Huddle Logo (Figma Node 110:8991) */}
+          <Link href="/" className="group block focus:outline-none" aria-label="Huddle Home">
+            <HuddleBrandLogo className="transition-transform group-hover:scale-[1.02] duration-200" />
+          </Link>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md px-4">
-        <div className="bg-white dark:bg-surface-900 py-8 px-6 shadow-xl border border-surface-200 dark:border-surface-800 rounded-3xl sm:px-10">
-          <form className="space-y-5" onSubmit={handleSubmit}>
-            <div>
-              <label className="block text-xs font-semibold text-surface-700 dark:text-surface-300">
-                Email*
-              </label>
-              <div className="mt-1 relative rounded-xl shadow-2xs">
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-surface-400">
-                  <Mail className="h-4 w-4" />
+          {/* Portal Subtitle (Figma Node 110:8992) */}
+          <h1 className="font-['Inter'] font-bold text-[24px] sm:text-[28px] lg:text-[32px] xl:text-[36px] text-black text-center leading-[1.3] mt-4 sm:mt-6 xl:mt-[24px] tracking-tight">
+            Partner Portal
+          </h1>
+        </section>
+
+        {/* Right Forgot Password Card Section (Figma Node 110:8777) */}
+        <section className="bg-white rounded-[20px] shadow-[0px_4px_30px_rgba(0,0,0,0.04)] border border-[#f3ebdc] w-full max-w-[540px] xl:max-w-[601px] 2xl:max-w-[681px] p-6 sm:p-8 xl:p-[40px] shrink-0">
+          <div className="w-full max-w-[601px] mx-auto flex flex-col items-center">
+            
+            <form onSubmit={handleSubmit} className="flex flex-col gap-6 sm:gap-8 xl:gap-[66px] items-center w-full">
+              
+              {/* Header & Email Section (Figma Node 110:8782) */}
+              <div className="flex flex-col gap-4 sm:gap-5 xl:gap-[26px] items-center w-full">
+                
+                {/* Title & Description (Figma Node 110:8783) */}
+                <div className="flex flex-col items-center text-center">
+                  <h2 className="font-['Inter'] font-bold text-[28px] sm:text-[36px] lg:text-[42px] xl:text-[48px] text-black leading-[1.25] tracking-tight mb-1 sm:mb-2">
+                    Forgot Password!
+                  </h2>
+                  <p className="font-['DM_Sans',sans-serif] font-normal text-[13px] sm:text-[14px] leading-[1.4] text-[#454f5b] max-w-[427px]">
+                    Do you forgot your password. It’s ease to reset, just provide your email address. We’ll send you a OTP code.
+                  </p>
                 </div>
-                <input
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your registered email"
-                  className="block w-full pl-10 pr-4 py-2.5 text-xs bg-surface-50 dark:bg-surface-800 border border-surface-200 dark:border-surface-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 text-surface-900 dark:text-surface-100"
-                />
-              </div>
-            </div>
 
-            <div className="grid grid-cols-2 gap-3 pt-2">
-              <Button
-                type="submit"
-                variant="primary"
-                className="h-11 text-xs font-bold"
-                isLoading={isLoading}
-              >
-                Send OTP
-              </Button>
-              <Link href="/login" className="w-full">
-                <Button type="button" variant="secondary" className="w-full h-11 text-xs font-bold">
-                  Cancel
-                </Button>
-              </Link>
-            </div>
-          </form>
-        </div>
+                {/* Email Input Field (Figma Node 110:8786) */}
+                <div className="flex flex-col items-start w-full">
+                  <div className="flex flex-col gap-[6px] items-start w-full">
+                    <label
+                      htmlFor="email"
+                      className="font-['DM_Sans',sans-serif] font-semibold text-[14px] leading-[1.5] text-black"
+                    >
+                      Email*
+                    </label>
+                    <div className="h-[46px] sm:h-[48px] xl:h-[50px] w-full rounded-[10px] border-[1.108px] border-[#391f10] bg-white flex items-center px-[11.1px] gap-[7px] transition-all focus-within:ring-2 focus-within:ring-[#ffbf00]/50 focus-within:border-[#391f10]">
+                      <Mail01Icon className="w-6 h-6 shrink-0 text-[#637381]" />
+                      <input
+                        id="email"
+                        type="email"
+                        required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Enter your email address"
+                        className="font-['DM_Sans',sans-serif] font-normal text-[14px] text-black placeholder-[#637381] bg-transparent outline-none w-full leading-[1.4]"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              {/* Action Buttons Row (Figma Node 110:8794) */}
+              <div className="flex gap-[11px] items-center w-full">
+                {/* Send OTP Button (Figma Node 110:8795) */}
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  className="flex-1 h-[48px] sm:h-[52px] xl:h-[55px] bg-[#FFBF00] hover:bg-[#fabd00] active:scale-[0.99] rounded-[10px] drop-shadow-[0px_8px_12px_rgba(244,210,66,0.18)] flex items-center justify-center px-[26px] py-[14px] transition-all duration-200 cursor-pointer disabled:opacity-75 disabled:cursor-not-allowed"
+                >
+                  <span className="font-['Inter'] font-bold text-[15px] sm:text-[16px] leading-[26px] text-black text-center tracking-[0.5px]">
+                    {isLoading ? "Sending..." : "Send OTP"}
+                  </span>
+                </button>
+
+                {/* Cancel Button (Figma Node 110:8797) */}
+                <Link
+                  href="/login"
+                  className="flex-1 h-[48px] sm:h-[52px] xl:h-[55px] bg-[#f4f6f8] hover:bg-[#eaecef] active:scale-[0.99] border border-[#897766] rounded-[10px] flex items-center justify-center px-[27px] py-[15px] transition-all duration-200"
+                >
+                  <span className="font-['Inter'] font-bold text-[15px] sm:text-[16px] leading-[26px] text-[#637381] text-center tracking-[0.5px]">
+                    Cancel
+                  </span>
+                </Link>
+              </div>
+
+            </form>
+
+          </div>
+        </section>
+
       </div>
-    </div>
+    </main>
   );
 }
